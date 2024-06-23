@@ -12,13 +12,19 @@ resource "google_compute_instance" "vm-from-tf" {
   machine_type = "e2-micro"
   zone  = "us-central1-a"
  
-#  allow_stopping_for_update = true
+ allow_stopping_for_update = true
 
   boot_disk {
     initialize_params {
       image = "debian-cloud/debian-12"
-      size =20
+      size = 20
+
     }
+    auto_delete = true
+  }
+
+  labels = {
+    "env" = "tflearning"
   }
 
   network_interface {
