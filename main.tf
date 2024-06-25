@@ -27,6 +27,15 @@ resource "google_compute_instance" "vm-from-tf" {
     "env" = "tflearning"
   }
 
+  scheduling {
+    preemptible = false
+    automatic_restart = false
+  }
+
+  service_account {
+    email ="terraformcomputeengine01@terraf-392514.iam.gserviceaccount.com"
+    scopes = ["cloud-platform"]
+  }
   network_interface {
     network = "test01"
     subnetwork = "test-network01"
